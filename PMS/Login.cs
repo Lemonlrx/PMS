@@ -62,6 +62,8 @@ namespace PMS
                 }
                 Properties.Settings.Default.Save();
 
+                PMS.Class.UserInfo.DisPlayName = dt.Rows[0][5].ToString();
+                PMS.Class.UserInfo.UserID = dt.Rows[0][0].ToString();
 
                 PMSMessageBox.Show(
                   "เข้าสู่ระบบสำเร็จ",

@@ -68,5 +68,50 @@ namespace PMS
 
             return dt;
         }
+        public static DataSet InputMySQLDataSet(string SQLCode)
+        {
+            // 1. เปลี่ยนจาก DataTable เป็น DataSet
+            DataSet ds = new DataSet();
+
+            using (MySqlConnection conMySQL = new MySqlConnection(MySQLDatabaseServer))
+            {
+                try
+                {
+                    if (conMySQL.State == ConnectionState.Closed)
+                    {
+                        conMySQL.Open();
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand(SQLCode, conMySQL))
+                    {
+                        cmd.CommandTimeout = QueryTimeoutSeconds;
+
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            // 2. เปลี่ยนการ Fill จาก dt เป็น ds 
+                            // หากคำสั่ง SQL มีผลลัพธ์หลายชุด มันจะสร้าง Table0, Table1, ... ใส่ใน ds ให้โดยอัตโนมัติ
+                            da.Fill(ds);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    if (ex.Number == 0 || ex.Message.ToLower().Contains("timeout"))
+                    {
+                        throw new Exception("การเชื่อมต่อฐานข้อมูลใช้เวลานานเกินไป (Timeout)", ex);
+                    }
+                    throw;
+                }
+                finally
+                {
+                    if (conMySQL.State == ConnectionState.Open)
+                    {
+                        conMySQL.Close();
+                    }
+                }
+            }
+
+            return ds;
+        }
     }
 }

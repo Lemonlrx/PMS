@@ -41,7 +41,7 @@
             // 
             // messageCard
             // 
-            messageCard.BackColor = Color.FromArgb(28, 29, 34);
+            messageCard.BackColor = Color.FromArgb(33, 34, 39);
             messageCard.Controls.Add(pictureIcon);
             messageCard.Controls.Add(lblTitle);
             messageCard.Controls.Add(lblMessage);
@@ -159,7 +159,7 @@
             // 
             // movingTabs1
             // 
-            movingTabs1.BackColor = Color.FromArgb(25, 25, 29);
+            movingTabs1.BackColor = Color.FromArgb(28, 29, 34);
             movingTabs1.Location = new Point(4, 2);
             movingTabs1.Name = "movingTabs1";
             movingTabs1.Size = new Size(452, 24);

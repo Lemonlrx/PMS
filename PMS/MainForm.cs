@@ -33,11 +33,7 @@ namespace PMS
         {
             IsMdiContainer = true;
 
-            BackColor =
-                Color.FromArgb(
-                    245,
-                    246,
-                    248);
+            BackColor = Color.FromArgb(245,246,248);
         }
 
         // =========================================================
@@ -46,27 +42,13 @@ namespace PMS
 
         private void CreateNavigation()
         {
-            navigation =
-                new PMS.Controls.PMSNavigation();
-
-            navigation.Dock =
-                DockStyle.Left;
-
-            navigation.CurrentUser =
-                "Admin";
-
-            navigation.NotificationCount =
-                98;
-
-            navigation.NotificationClicked +=
-                Navigation_NotificationClicked;
-
-            navigation.LogoutClicked +=
-                Navigation_LogoutClicked;
-
-            Controls.Add(
-                navigation);
-
+            navigation = new PMS.Controls.PMSNavigation();
+            navigation.Dock = DockStyle.Left;
+            navigation.CurrentUser = PMS.Class.UserInfo.DisPlayName;
+            navigation.NotificationCount =98;
+            navigation.NotificationClicked += Navigation_NotificationClicked;
+            navigation.LogoutClicked +=Navigation_LogoutClicked;
+            Controls.Add(navigation);
             navigation.BringToFront();
         }
 
@@ -76,78 +58,23 @@ namespace PMS
 
         private void CreateMenus()
         {
-            // =====================================================
-            // DASHBOARD
-            // =====================================================
+            navigation.AddPage("Dashboard",Properties.Resources.dashboard,() => new PMS.Forms.DashboardForm());
 
-            navigation.AddPage(
-                "Dashboard",
-                Properties.Resources.dashboard,
-                () => new PMS.Forms.DashboardForm());
+            navigation.AddCategory("ระบบจำนำ",Properties.Resources.pawn,
 
-
-            // =====================================================
-            // ระบบจำนำ
-            // =====================================================
-
-            navigation.AddCategory(
-                "ระบบจำนำ",
-                Properties.Resources.pawn,
-
-                navigation.Page(
-                    "รับจำนำ",
-                    Properties.Resources.pawn,
-                    () => new PawnCreateForm()),
-
-                navigation.Page(
-                    "ไถ่ถอน",
-                    Properties.Resources.redeem,
-                    () => new PawnRedeemForm()),
-
-                navigation.Page(
-                    "ต่อดอก",
-                    Properties.Resources.interest,
-                    () => new PawnInterestForm()),
-
-                navigation.Page(
-                    "ประวัติรายการ",
-                    Properties.Resources.history,
-                    () => new PawnHistoryForm())
+                navigation.Page("รับจำนำ",null,() => new PawnCreateForm()),
+                navigation.Page("ไถ่ถอน",Properties.Resources.redeem,() => new PawnRedeemForm()),
+                navigation.Page("ต่อดอก",Properties.Resources.interest,() => new PawnInterestForm()),
+                navigation.Page("ประวัติรายการ",Properties.Resources.history,() => new PawnHistoryForm())
             );
 
+            navigation.AddPage("ลูกค้า",Properties.Resources.customer,() => new CustomerForm());
 
-            // =====================================================
-            // ลูกค้า
-            // =====================================================
+            navigation.AddCategory("รายงาน",Properties.Resources.report,
 
-            navigation.AddPage(
-                "ลูกค้า",
-                Properties.Resources.customer,
-                () => new CustomerForm());
-
-
-            // =====================================================
-            // รายงาน
-            // =====================================================
-
-            navigation.AddCategory(
-                "รายงาน",
-                Properties.Resources.report,
-
-                navigation.Page(
-                    "รายงานรับจำนำ",
-                    Properties.Resources.report,
-                    () => new PawnReportForm()),
-
-                navigation.Page(
-                    "รายงานไถ่ถอน",
-                    Properties.Resources.report,
-                    () => new RedeemReportForm()),
-
-                navigation.Page(
-                    "รายงานการเงิน",
-                    Properties.Resources.report,
-                    () => new FinanceReportForm())
+                navigation.Page("รายงานรับจำนำ",Properties.Resources.report,() => new PawnReportForm()),
+                navigation.Page("รายงานไถ่ถอน",Properties.Resources.report,() => new RedeemReportForm()),
+                navigation.Page("รายงานการเงิน",Properties.Resources.report,() => new FinanceReportForm())
             );
         }
 
