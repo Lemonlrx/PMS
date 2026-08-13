@@ -60,21 +60,51 @@ namespace PMS
         {
             navigation.AddPage("Dashboard",Properties.Resources.dashboard,() => new PMS.Forms.DashboardForm());
 
-            navigation.AddCategory("ระบบจำนำ",Properties.Resources.pawn,
+            navigation.AddCategory("รับจำนำ", Properties.Resources.pawn,
 
-                navigation.Page("รับจำนำ",null,() => new PawnCreateForm()),
-                navigation.Page("ไถ่ถอน",Properties.Resources.redeem,() => new PawnRedeemForm()),
-                navigation.Page("ต่อดอก",Properties.Resources.interest,() => new PawnInterestForm()),
-                navigation.Page("ประวัติรายการ",Properties.Resources.history,() => new PawnHistoryForm())
+                navigation.Category("จัดการบิล", null,
+                    navigation.Page("เปิดบิล", null, () => new PawnCreateForm()),
+                    navigation.Page("ต่อดอก", null, () => new PawnInterestForm()),
+                    navigation.Page("ไถ่ถอน", null, () => new PawnCreateForm()),
+                    navigation.Page("แก้ไข้เงินต้น", null, () => new PawnCreateForm()),
+                    navigation.Page("ดูช้อมูลบิล", null, () => new PawnHistoryForm()),
+                    navigation.Page("รายการรอตีหลุด", null, () => new PawnCreateForm())
+                    ),
+                navigation.Category("การขาย", null,
+                    navigation.Page("ขายสินค้า", null, () => new PawnCreateForm()),
+                    navigation.Page("ยกเลิกบิลการขาย", null, () => new PawnCreateForm()),
+                    navigation.Page("ดูข้อมูลการขาย", null, () => new PawnCreateForm())
+                    ),
+                navigation.Category("รับซื้อสินค้า", null,
+                    navigation.Page("รับซื้อสินค้า", null, () => new PawnCreateForm()),
+                    navigation.Page("ยกเลิกบิลรับซื้อ", null, () => new PawnCreateForm()),
+                    navigation.Page("ดูข้อมูลการรับซื้อ", null, () => new PawnCreateForm())
+                    ),
+                navigation.Page("เช็คสินค้าในสต็อก", null, () => new PawnCreateForm())
             );
 
-            navigation.AddPage("ลูกค้า",Properties.Resources.customer,() => new CustomerForm());
+            navigation.AddCategory("สมาชิก",Properties.Resources.customer,
+                navigation.Page("สมัครสมาชิก", null, () => new CustomerForm()),
+                navigation.Page("ดูข้อมูลสมาชิก", null, () => new CustomerForm())
+                );
+
+            navigation.AddCategory("การเงิน", Properties.Resources.interest,
+                navigation.Page("เพิ่มเงินเข้า", null, () => new CustomerForm()),
+                navigation.Page("ถอนเงินออก", null, () => new CustomerForm()),
+                navigation.Page("เช็คประวัติการทำรายการ", null, () => new CustomerForm())
+                );
 
             navigation.AddCategory("รายงาน",Properties.Resources.report,
 
-                navigation.Page("รายงานรับจำนำ",Properties.Resources.report,() => new PawnReportForm()),
-                navigation.Page("รายงานไถ่ถอน",Properties.Resources.report,() => new RedeemReportForm()),
-                navigation.Page("รายงานการเงิน",Properties.Resources.report,() => new FinanceReportForm())
+                navigation.Page("รายงานรับจำนำ", null, () => new PawnReportForm()),
+                navigation.Page("รายงานไถ่ถอน", null,() => new RedeemReportForm()),
+                navigation.Page("รายงานการเงิน", null, () => new FinanceReportForm())
+            );
+
+            navigation.AddCategory("การตั้งค่า", Properties.Resources.property,
+
+                navigation.Page("ตั้งค่าระบบ", null, () => new PawnReportForm()),
+                navigation.Page("ตั้งค่า Profile ร้านค้า", null, () => new RedeemReportForm())
             );
         }
 

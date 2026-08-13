@@ -265,9 +265,10 @@
             // 
             PTB.BackColor = SystemColors.Control;
             PTB.BorderStyle = BorderStyle.FixedSingle;
-            PTB.Location = new Point(723, 102);
+            PTB.Location = new Point(723, 88);
             PTB.Name = "PTB";
-            PTB.Size = new Size(260, 316);
+            PTB.Size = new Size(251, 318);
+            PTB.SizeMode = PictureBoxSizeMode.StretchImage;
             PTB.TabIndex = 8;
             PTB.TabStop = false;
             // 

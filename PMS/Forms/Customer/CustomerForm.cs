@@ -386,8 +386,14 @@ namespace PMS.Forms.Customer
             {
                 Directory.CreateDirectory(CustomerImageFolder);
                 string fileName = $"{idCard}_{DateTime.Now:yyyyMMddHHmmss}.jpg";
-                string fullPath = Path.Combine(CustomerImageFolder, fileName);
-                image.Save(fullPath, ImageFormat.Jpeg);
+                //string fullPath = Path.Combine(CustomerImageFolder, fileName);
+                string fullPath = fileName;
+                // สร้าง Bitmap ตัวใหม่จาก image เพื่อปลดล็อก Stream/File Lock ของ GDI+
+                using (Bitmap tempBitmap = new Bitmap(image))
+                {
+                    tempBitmap.Save(fullPath, ImageFormat.Jpeg);
+                }
+
                 return fullPath;
             }
             catch
