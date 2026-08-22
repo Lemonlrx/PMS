@@ -43,6 +43,7 @@ namespace PMS
 
                         using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                         {
+                            Console.Write(SQLCode);
                             da.Fill(dt);
                         }
                     }

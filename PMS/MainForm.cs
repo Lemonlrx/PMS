@@ -85,7 +85,7 @@ namespace PMS
 
             navigation.AddCategory("สมาชิก",Properties.Resources.customer,
                 navigation.Page("สมัครสมาชิก", null, () => new CustomerForm()),
-                navigation.Page("ดูข้อมูลสมาชิก", null, () => new CustomerForm())
+                navigation.Page("ดูข้อมูลสมาชิก", null, () => new CustomerInfo())
                 );
 
             navigation.AddCategory("การเงิน", Properties.Resources.interest,

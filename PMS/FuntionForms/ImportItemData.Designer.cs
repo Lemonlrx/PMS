@@ -1,4 +1,4 @@
-﻿namespace PledgenElectronicProject.Forms.Pledge
+﻿namespace PMS.Forms.Pledge
 {
     partial class ImportItemData
     {
